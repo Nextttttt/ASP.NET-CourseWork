@@ -20,6 +20,8 @@
 
         Task DeleteAsync(string Studieid, string Subjectid);
 
+        Task DeleteAsync(string id);
+
 
     }
 }

@@ -76,5 +76,23 @@
             return subjects;
         }
 
+        public async Task DeleteAsync(string id)
+        {
+            List<StudieSubjects> studies = this.dbContext.StudieSubjects
+                .Where(s => s.StudieId == id)
+                .ToList();
+
+            bool isStudieNull = studies == null;
+
+            if (isStudieNull)
+            {
+                return;
+            }
+            foreach(var item in studies)
+            {
+                this.dbContext.Remove(item);
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -70,12 +70,9 @@
             List<StudieSubjects> joiningTable = this.studieSubjectsService.GetAllById(id);
             List<SubjectModel> subjectsInStudie = new List<SubjectModel>();
             StudieViewModel studie = this.studiesService.GetForViewById(id);
-            foreach(var item in joiningTable)
+            foreach (var item in joiningTable)
             {
-                subjectsInStudie = subjectsService
-                    .GetAll()
-                    .Where(s => s.Id == item.SubjectId)
-                    .ToList();
+                subjectsInStudie.Add(subjectsService.GetById(item.SubjectId));
             }
             ViewBag.Subjects = subjectsInStudie;
 
@@ -150,6 +147,7 @@
         public async Task<IActionResult> Delete(string id)
         {
             await this.studiesService.DeleteAsync(id);
+            await this.studieSubjectsService.DeleteAsync(id);
 
             return this.RedirectToAction("Index");
         }
