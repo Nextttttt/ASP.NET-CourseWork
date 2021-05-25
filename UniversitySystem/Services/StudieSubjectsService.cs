@@ -30,13 +30,13 @@
             return joiningSubjects;
         }
 
-        public StudieSubjects GetById(string id)
+        public List<StudieSubjects> GetAllById(string id)
         {
-            StudieSubjects studie = this.dbContext.StudieSubjects
-                .Where(subject => subject.StudieId == id)
-                .SingleOrDefault();
+            List<StudieSubjects> subjects = this.dbContext.StudieSubjects
+                .Where(studie => studie.StudieId == id)
+                .ToList();
 
-            return studie;
+            return subjects;
         }
     }
 }

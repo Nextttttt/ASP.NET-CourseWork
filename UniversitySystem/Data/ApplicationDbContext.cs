@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UniversitySystem.Models.Studies;
+using UniversitySystem.Models.Studies.BindingModels;
+using UniversitySystem.Models.Faculties;
+using UniversitySystem.Models.Faculties.BindingModels;
 namespace UniversitySystem.Data
 {
     using Microsoft.EntityFrameworkCore;
@@ -45,6 +48,11 @@ namespace UniversitySystem.Data
         public DbSet<UniversitySystem.Models.Subjects.BindingModels.SubjectUpdateBindingModel> SubjectUpdateBindingModel { get; set; }
         public DbSet<UniversitySystem.Models.Subjects.SubjectViewModel> SubjectViewModel { get; set; }
         public DbSet<UniversitySystem.Models.Studies.StudieViewModel> StudieViewModel { get; set; }
+        public DbSet<UniversitySystem.Models.Studies.BindingModels.StudieBindingModel> StudieBindingModel { get; set; }
+        public DbSet<UniversitySystem.Models.Studies.BindingModels.StudieUpdateBindingModel> StudieUpdateBindingModel { get; set; }
+        public DbSet<UniversitySystem.Models.Faculties.FacultyViewModel> FacultyViewModel { get; set; }
+        public DbSet<UniversitySystem.Models.Faculties.BindingModels.FacultyBindingModel> FacultyBindingModel { get; set; }
+        public DbSet<UniversitySystem.Models.Faculties.BindingModels.FacultyUpdateBindingModel> FacultyUpdateBindingModel { get; set; }
 
 
        

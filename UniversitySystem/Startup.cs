@@ -49,13 +49,10 @@ namespace UniversitySystem
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
 
-                using (var serviceScope = app.ApplicationServices.CreateScope())
-                {
-                    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                using var serviceScope = app.ApplicationServices.CreateScope();
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-                    dbContext.Database.Migrate();
-
-                }
+                dbContext.Database.Migrate();
             }
             else
             {
@@ -86,6 +83,8 @@ namespace UniversitySystem
             services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IPostsService, PostsService>();
             services.AddScoped<IStudiesService, StudiesService>();
+            services.AddScoped<IStudieSubjectsService, StudieSubjectsService>();
+            services.AddScoped<IFacultiesService, FacultiesService>();
         }
 
 

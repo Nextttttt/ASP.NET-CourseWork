@@ -12,7 +12,7 @@
 
         IEnumerable<StudieSubjects> GetAll();
 
-        public StudieSubjects GetById(string id);
+        public List<StudieSubjects> GetAllById(string id);
 
 
     }

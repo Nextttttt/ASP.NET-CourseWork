@@ -16,12 +16,14 @@
     {
         private readonly IStudiesService studiesService;
         private readonly ISubjectsService subjectsService;
+        private readonly IStudieSubjectsService studieSubjectsService;
 
-        public StudiesController(IStudiesService studiesService, ISubjectsService subjectsService)
+        public StudiesController(IStudiesService studiesService, ISubjectsService subjectsService, IStudieSubjectsService studieSubjectsService)
         {
 
             this.studiesService = studiesService;
             this.subjectsService = subjectsService;
+            this.studieSubjectsService = studieSubjectsService;
 
         }
 
@@ -49,8 +51,17 @@
         [HttpGet]
         public IActionResult Details(string id)
         {
-            StudieSubjects joiningTable = this.
+            List<StudieSubjects> joiningTable = this.studieSubjectsService.GetAllById(id);
+            List<SubjectModel> subjectsInStudie = new List<SubjectModel>();
             StudieViewModel studie = this.studiesService.GetForViewById(id);
+            foreach(var item in joiningTable)
+            {
+                subjectsInStudie = subjectsService
+                    .GetAll()
+                    .Where(s => s.Id == item.SubjectId)
+                    .ToList();
+            }
+            ViewBag.Subjects = subjectsInStudie;
 
             bool isStudieNull = studie == null;
             if (isStudieNull)
@@ -76,18 +87,17 @@
         public async Task<IActionResult> Create(StudieBindingModel model)
         {
 
-            StudieModel studie = studiesService.GetByName(model.Name);
 
-            bool isStudieAlreadyInDb = studie != null;
+            StudieModel studieFromDb = this.studiesService.GetByName(model.Name);
 
-            if(isStudieAlreadyInDb)
+            bool isStudieAlreadyInDb = studieFromDb != null;
+
+            if (isStudieAlreadyInDb)
             {
-
                 return this.RedirectToAction("Index");
-
             }
 
-            await studiesService.CreateAsync(model);
+            await this.studiesService.CreateAsync(model);
 
             return this.RedirectToAction("Index");
 

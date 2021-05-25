@@ -9,20 +9,29 @@
 <div>
     <h4>StudieViewModel</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-    <dl class="row">
-        <dt>Subjects in Studie</dt>
-        <dd>
+    <table>
+        <tr>
 
-        </dd>
-    </dl>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th>
+                Subjects
+            </th>
+
+        </tr>
+        <tr>
+            @foreach(var subject in ViewBag.Subjects)
+            {
+                <td>
+
+                    @subject.Name
+
+                </td>
+            }
+        </tr>
+    </table>>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
