@@ -39,6 +39,8 @@ namespace UniversitySystem.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<StudieSubjects>()
+                .HasKey(s => new { s.StudieId, s.SubjectId });
 
             
         }

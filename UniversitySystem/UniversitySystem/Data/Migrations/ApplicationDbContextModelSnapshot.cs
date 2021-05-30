@@ -277,16 +277,13 @@ namespace UniversitySystem.Data.Migrations
 
             modelBuilder.Entity("UniversitySystem.Models.JoiningModels.StudieSubjects", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("StudieId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("StudieId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SubjectId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("StudieId", "SubjectId");
 
                     b.ToTable("StudieSubjects");
                 });

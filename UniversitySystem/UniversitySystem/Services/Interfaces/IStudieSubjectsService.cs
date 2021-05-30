@@ -12,15 +12,7 @@
 
         IEnumerable<StudieSubjects> GetAll();
 
-        public StudieSubjects GetById(string Studieid, string Subjectid);
-
         public List<StudieSubjects> GetAllById(string id);
-
-        Task CreateAsync(StudieSubjects model);
-
-        Task DeleteAsync(string Studieid, string Subjectid);
-
-        Task DeleteAsync(string id);
 
 
     }

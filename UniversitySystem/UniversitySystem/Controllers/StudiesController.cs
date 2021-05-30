@@ -35,7 +35,7 @@
             return View(studies);
         }
 
-        [HttpGet]
+
         public IActionResult AddSubjectsToStudie()
         {
             IEnumerable<SubjectModel> subjects = subjectsService.GetAll();
@@ -45,23 +45,7 @@
             ViewBag.Studies = studies;
             ViewBag.Subjects = subjects;
 
-            return this.View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddSubjectsToStudie(StudieSubjects model)
-        {
-            IEnumerable<SubjectModel> subjects = subjectsService.GetAll();
-            IEnumerable<StudieModel> studies = studiesService.GetAll();
-
-
-            ViewBag.Studies = studies;
-            ViewBag.Subjects = subjects;
-
-           await this.studieSubjectsService.CreateAsync(model);
-
-            return this.RedirectToAction("Index");
-          
+            return View();
         }
 
         [HttpGet]
@@ -70,9 +54,12 @@
             List<StudieSubjects> joiningTable = this.studieSubjectsService.GetAllById(id);
             List<SubjectModel> subjectsInStudie = new List<SubjectModel>();
             StudieViewModel studie = this.studiesService.GetForViewById(id);
-            foreach (var item in joiningTable)
+            foreach(var item in joiningTable)
             {
-                subjectsInStudie.Add(subjectsService.GetById(item.SubjectId));
+                subjectsInStudie = subjectsService
+                    .GetAll()
+                    .Where(s => s.Id == item.SubjectId)
+                    .ToList();
             }
             ViewBag.Subjects = subjectsInStudie;
 
@@ -147,7 +134,6 @@
         public async Task<IActionResult> Delete(string id)
         {
             await this.studiesService.DeleteAsync(id);
-            await this.studieSubjectsService.DeleteAsync(id);
 
             return this.RedirectToAction("Index");
         }

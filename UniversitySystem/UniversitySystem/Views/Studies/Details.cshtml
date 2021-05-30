@@ -7,27 +7,31 @@
 <h1>Details</h1>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <h4>StudieViewModel</h4>
     <hr />
-    <table class="table">
-        <tr> 
+    <table>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
             <th>
                 Subjects
             </th>
 
         </tr>
-            @foreach (var subject in ViewBag.Subjects)
+        <tr>
+            @foreach(var subject in ViewBag.Subjects)
             {
-                <tr>
-                    <td>
+                <td>
 
-                        @subject.Name
+                    @subject.Name
 
-                    </td>
-                </tr>
-                }
-            
-        </table>
+                </td>
+            }
+        </tr>
+    </table>>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
