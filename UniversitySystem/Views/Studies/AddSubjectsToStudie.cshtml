@@ -1,0 +1,45 @@
+﻿@model UniversitySystem.Models.JoiningModels.StudieSubjects
+
+@{
+    ViewData["Title"] = "AddSubjectsToStudie";
+}
+
+<h1>Add Subject to a Studie</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSubjectsToStudie">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudieId" class="control-label"></label>
+                <select asp-for="StudieId" class="form-control">
+                   @foreach(var studie in ViewBag.Studies)
+                   {
+                       <option value="@studie.Id">@studie.Name</option>
+                   }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectId" class="control-label"></label>
+                <select asp-for="SubjectId" class="form-control">
+                    @foreach (var subject in ViewBag.Subjects)
+                    {
+                        <option value="@subject.Id">@subject.Name</option>
+                    }
+                </select>>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
