@@ -22,5 +22,10 @@
 
             return View(posts);
         }
+
+        public IActionResult AddNew()
+        {
+            return this.View();
+        }
     }
 }

@@ -7,48 +7,41 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Hover.css">
     <link rel="stylesheet" href="~/css/myStyles.css" />
 
 </head>
 <body>
     <header class="my-nav">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">UniversitySystem</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">University</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Subjects" asp-action="Create">Subject</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Studies" asp-action="AddSubjectsToStudie">AddTest</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Studies" asp-action="Create">Studie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Faculties" asp-action="Create">Faculty</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Faculties" asp-action="AddStudiesToFaculty">aDDsTudies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Faculties" asp-action="Create">Faculty</a>
-                        </li>
-                    </ul>
+                    <div class="navbar-nav">
+                        
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                       
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Faculties" asp-action="Index">Faculties</a>
+                        
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Studies" asp-action="Index">Studies</a>
+                      
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Subjects" asp-action="Index">Subjects</a>
+                       
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                        
+                            <a class="nav-item nav-link text-light hvr-fade" asp-area="" asp-controller="Home" asp-action="AddNew">Add New</a>
+                        
+
+                    </div>
+                    </div>
                     <partial name="_LoginPartial" />
                 </div>
-            </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container my-web-container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -56,7 +49,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - UniversitySystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span style="color:#ffffff;">&copy; 2021 - UniversitySystem - </span><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
