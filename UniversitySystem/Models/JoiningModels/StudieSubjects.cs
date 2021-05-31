@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    public class StudieSubjects : BaseModel
+    public class StudieSubjects
     {
 
         public string StudieId { get; set; }

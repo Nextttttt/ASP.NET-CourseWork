@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class PostBindingModel : BaseModel
+    public class PostBindingModel
     {
         [Required(ErrorMessage = "Please enter a Post Title!")]
         [Display(Name = "Post Title")]

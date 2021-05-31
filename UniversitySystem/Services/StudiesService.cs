@@ -20,7 +20,7 @@
 
         public IEnumerable<StudieModel> GetAll()
         {
-            IEnumerable<StudieModel> studies = dbContext.Studies
+            IEnumerable<StudieModel> studies = dbContext.Subjects
                 .Select(subject => new StudieModel
                 {
                     Id = subject.Id,

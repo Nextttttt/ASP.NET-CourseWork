@@ -80,11 +80,11 @@ namespace UniversitySystem
         private static void RegisterDatabaseServices(IServiceCollection services)
         {
             services.AddScoped<ISubjectsService, SubjectsService>();
+            services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IPostsService, PostsService>();
             services.AddScoped<IStudiesService, StudiesService>();
             services.AddScoped<IStudieSubjectsService, StudieSubjectsService>();
             services.AddScoped<IFacultiesService, FacultiesService>();
-            services.AddScoped<IFacultyStudiesService, FacultyStudiesService>();
         }
 
 

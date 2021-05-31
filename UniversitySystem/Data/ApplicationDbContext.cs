@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UniversitySystem.Models.Comunication.Posts;
-using UniversitySystem.Models.Comunication.Posts.BindingModels;
-
+using UniversitySystem.Models.Studies;
+using UniversitySystem.Models.Studies.BindingModels;
+using UniversitySystem.Models.Faculties;
+using UniversitySystem.Models.Faculties.BindingModels;
 namespace UniversitySystem.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using UniversitySystem.Models.Subjects.BindingModels;
     using UniversitySystem.Models.Subjects;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using UniversitySystem.Models;
+    using UniversitySystem.Models.Comunication.Comments;
     using UniversitySystem.Models.Comunication.Posts;
     using UniversitySystem.Models.Studies;
     using UniversitySystem.Models.Faculties;
@@ -28,14 +31,16 @@ namespace UniversitySystem.Data
 
         public DbSet<PostModel> Posts { get; set; }
 
-        public DbSet<FacultyModel> Faculties { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
 
-        public DbSet<FacultyStudies> FacultyStudies { get; set; }
+        public DbSet<FacultyModel> Faculties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<StudieSubjects>()
+                .HasKey(s => new { s.StudieId, s.SubjectId });
 
             
         }
@@ -48,9 +53,6 @@ namespace UniversitySystem.Data
         public DbSet<UniversitySystem.Models.Faculties.FacultyViewModel> FacultyViewModel { get; set; }
         public DbSet<UniversitySystem.Models.Faculties.BindingModels.FacultyBindingModel> FacultyBindingModel { get; set; }
         public DbSet<UniversitySystem.Models.Faculties.BindingModels.FacultyUpdateBindingModel> FacultyUpdateBindingModel { get; set; }
-        public DbSet<UniversitySystem.Models.Comunication.Posts.PostViewModel> PostViewModel { get; set; }
-        public DbSet<UniversitySystem.Models.Comunication.Posts.BindingModels.PostBindingModel> PostBindingModel { get; set; }
-        public DbSet<UniversitySystem.Models.Comunication.Posts.BindingModels.PostUpdateBindingModel> PostUpdateBindingModel { get; set; }
 
 
        

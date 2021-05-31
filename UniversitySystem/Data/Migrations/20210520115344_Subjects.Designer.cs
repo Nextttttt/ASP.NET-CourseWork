@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversitySystem.Data;
 
 namespace UniversitySystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210520115344_Subjects")]
+    partial class Subjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,125 +201,6 @@ namespace UniversitySystem.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("UniversitySystem.Models.Faculties.BindingModels.FacultyBindingModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Desc")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FacultyBindingModel");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Faculties.BindingModels.FacultyUpdateBindingModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Desc")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FacultyUpdateBindingModel");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Faculties.FacultyModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Desc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Faculties");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Faculties.FacultyViewModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Desc")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FacultyViewModel");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.JoiningModels.StudieSubjects", b =>
-                {
-                    b.Property<string>("StudieId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SubjectId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("StudieId", "SubjectId");
-
-                    b.ToTable("StudieSubjects");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Studies.BindingModels.StudieBindingModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudieBindingModel");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Studies.BindingModels.StudieUpdateBindingModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudieUpdateBindingModel");
-                });
-
             modelBuilder.Entity("UniversitySystem.Models.Studies.StudieModel", b =>
                 {
                     b.Property<string>("Id")
@@ -331,21 +214,6 @@ namespace UniversitySystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Studies");
-                });
-
-            modelBuilder.Entity("UniversitySystem.Models.Studies.StudieViewModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudieViewModel");
                 });
 
             modelBuilder.Entity("UniversitySystem.Models.Subjects.BindingModels.SubjectBindingModel", b =>
@@ -403,7 +271,12 @@ namespace UniversitySystem.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("StudieModelId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StudieModelId");
 
                     b.ToTable("Subjects");
                 });
@@ -566,6 +439,18 @@ namespace UniversitySystem.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UniversitySystem.Models.Subjects.SubjectModel", b =>
+                {
+                    b.HasOne("UniversitySystem.Models.Studies.StudieModel", null)
+                        .WithMany("Subjects")
+                        .HasForeignKey("StudieModelId");
+                });
+
+            modelBuilder.Entity("UniversitySystem.Models.Studies.StudieModel", b =>
+                {
+                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }
